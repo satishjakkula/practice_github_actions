@@ -1,0 +1,13 @@
+name: First Flow
+on: push
+jobs:
+    first_job:
+        name: first one
+        runs-on: ubuntu:latest
+        steps:
+           - name: run hello
+             run: echo "Hello"
+
+           - name: list files
+             run: ls -al
+
