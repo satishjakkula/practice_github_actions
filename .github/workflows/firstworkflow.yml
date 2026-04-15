@@ -5,6 +5,9 @@ jobs:
         name: first one
         runs-on: ubuntu-latest
         steps:
+           - name: Checkout Action
+             uses: actions/checkout@v6
+             
            - name: run hello
              run: echo "Hello"
 
