@@ -30,3 +30,12 @@ jobs:
               env:
                 DOCKER_IMAGE: satish-nginx2
               run: echo docker container run -d -p 8080:80  $DOCKER_HOST/$DOCKER_USER_NAME/$DOCKER_IMAGE:latest
+    
+    check_repo_vars:
+        name: Need To Check Repo Level Vars
+        runs-on: ubuntu-slim
+        steps:
+            - name: Check Repo Vars and Secrets
+              run: |
+                 echo Repo Var is ${{ vars.REPO_VAR}}
+                 echo Secret Var is ${{ secrets.SECRET}}
