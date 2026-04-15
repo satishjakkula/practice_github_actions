@@ -12,7 +12,7 @@ jobs:
              run: |
                echo "Hello"
                ls -al
-               cat  Readme.md
+               cat  README.md
            - name: ASCII JOB FOR VISUAL GRAPHICS
              run: | 
                 sudo apt update
