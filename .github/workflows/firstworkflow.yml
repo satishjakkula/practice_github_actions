@@ -22,12 +22,20 @@ jobs:
                 cowsay -f dragon "Run for cover, I'm a Dragon RAR" >> dragon.txt
                 cat dragon.txt
 
+           - name: Upload A Build Artifact
+             uses: actions/upload-artifact@v7
+             with:
+                name: dragon-file-output
+                path: dragon.txt
 
-        #    - name: list files
-        #      run: ls -al
-
-        #    - name: test if curl is present
-        #      run: curl --help
-
-    # ascii_job:
-    #     name: ASCII JOB FOR VISUAL GRAPHICS
+    second_job:
+        name: Verify dragon.txt
+        needs: first_job
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Dragon File Artifact
+              uses: actions/download-artifact@v8
+              with:
+                 name: dragon-file-output
+            - name: print dragon file content
+              run: cat dragon.txt
