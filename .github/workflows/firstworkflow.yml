@@ -1,5 +1,10 @@
 name: First Flow
-on: push
+on:
+   workflow_dispatch:
+   push:
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
     first_job:
         name: first one
