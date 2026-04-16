@@ -2,6 +2,9 @@ name: Workflow For Docker Connect
 on:
    workflow_dispatch:
    push:
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 env:
     DOCKER_USER_NAME: satish92
     DOCKER_PASSWORD: satimama
