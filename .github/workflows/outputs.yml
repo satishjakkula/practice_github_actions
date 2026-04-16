@@ -1,0 +1,19 @@
+on: push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set_matrix.outputs.matrix }}
+    steps:
+      - id: set_matrix
+        run: |
+          echo 'matrix={"include":[{"env":"staging"},{"env":"production"}]}' >> $GITHUB_OUTPUT
+          echo   $GITHUB_OUTPUT
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.job1.outputs.matrix) }}  # parse JSON output as matrix
+    steps:
+      - run: echo "Running for ${{ matrix.env }}"
