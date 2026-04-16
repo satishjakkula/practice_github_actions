@@ -10,6 +10,8 @@ concurrency:
 jobs:
     docker_build:
         strategy:
+          fail-fast: false
+          max-parallel: 3
           matrix:
             os: [ubuntu-latest, ubuntu-22.04, windows-2022]
             images: [hello-world, alpine]
