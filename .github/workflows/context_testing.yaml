@@ -35,5 +35,5 @@ jobs:
          run: echo $SECRETS_CONTEXT
        - name: Variables Context
          env:
-            VAR_CONTEXT: toJson(vars)
+            VAR_CONTEXT: ${{ toJson(vars) }}
          run: echo "$VAR_CONTEXT"
