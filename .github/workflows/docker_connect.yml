@@ -2,9 +2,7 @@ name: Workflow For Docker Connect
 on:
    workflow_dispatch:
    push:
-concurrency: 
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+
 env:
     DOCKER_USER_NAME: satish92
     DOCKER_PASSWORD: satimama
@@ -12,6 +10,9 @@ env:
     # DOCKER_IMAGE: satish-nginx
 jobs:
     docker_build:
+        concurrency: 
+            group: ${{ github.workflow }}-${{ github.ref }}
+            cancel-in-progress: true
         env:
            DOCKER_IMAGE: satish-nginx  
         name: tag image
@@ -25,7 +26,10 @@ jobs:
 
             - name: Docker Push
               run: echo docker push docker.io/$DOCKER_USER_NAME
-    
+            
+            - name: sleep for some time
+              run: sleep 30s
+
     deploy:
         name: Create Container
         needs: docker_build
