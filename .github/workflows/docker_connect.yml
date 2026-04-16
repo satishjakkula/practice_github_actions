@@ -1,5 +1,7 @@
 name: Workflow For Docker Connect
-on: push
+on:
+   workflow_dispatch:
+   push:
 env:
     DOCKER_USER_NAME: satish92
     DOCKER_PASSWORD: satimama
