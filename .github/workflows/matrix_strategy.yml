@@ -13,6 +13,12 @@ jobs:
           matrix:
             os: [ubuntu-latest, ubuntu-22.04, windows-2022]
             images: [hello-world, alpine]
+            exclude:
+              - images: alpine 
+                os: windows-2022
+            include:
+              - images: amd64/alpine
+                os: ubuntu-22.04
         runs-on: ${{ matrix.os }}
         steps:
             - name: docker info
