@@ -8,7 +8,7 @@ concurrency:
 jobs:
     first_job:
         name: first one
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
         steps:
            - name: Checkout Action
              uses: actions/checkout@v6
