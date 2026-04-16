@@ -8,7 +8,7 @@ jobs:
       - id: set_matrix
         run: |
           echo 'matrix={"include":[{"env":"staging"},{"env":"production"}]}' >> $GITHUB_OUTPUT
-          echo   $GITHUB_OUTPUT
+          cat   $GITHUB_OUTPUT
 
   job2:
     needs: job1
