@@ -32,7 +32,7 @@ jobs:
               run: sleep 30s
 
     deploy:
-        
+        if:  github.ref == 'refs/heads/main' || github.repository == 'satishjakkula/practice_github_actions'
         name: Create Container
         needs: docker_build
         runs-on: ubuntu-latest
