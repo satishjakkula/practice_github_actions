@@ -1,5 +1,20 @@
 name: Context Testing
-on: push
+on:
+  push:
+    branches:
+      - main
+      - '!feature/*'
+
+  pull_request: 
+    types: 
+      - opened
+      - closed
+      - reopened
+      - review_requested
+    branches: 
+      - main
+    
+
 jobs:
   dump_contests_to_log:
      name: Dump Contexts To Log
