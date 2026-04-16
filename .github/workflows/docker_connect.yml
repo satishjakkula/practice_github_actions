@@ -13,10 +13,6 @@ env:
 
 jobs:
     docker_build:
-        strategy:
-          matrix:
-            os: [ubuntu-latest, ubuntu-20.04, windows-latest]
-            images: [hello-world, alpine ]
         env:
            DOCKER_IMAGE: satish-nginx  
         name: tag image

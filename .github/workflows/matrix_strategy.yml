@@ -1,4 +1,4 @@
-name: Workflow To Run Docker Containers
+name: Workflow To Run Docker Containers Based on Matrix Strategy
 on:
    workflow_dispatch:
    push:
