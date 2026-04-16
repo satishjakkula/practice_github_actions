@@ -39,6 +39,13 @@ jobs:
          run: echo "$VAR_CONTEXT"
        - name: Get token permissions
          run: |
-            curl -si -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }} \
-            | grep -i "x-oauth-scopes\|x-accepted-oauth-scopes\|x-github-token-permissions"
+       - name: Test token permissions
+         run: |
+                echo "=== Token Identity ==="
+                curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                  https://api.github.com/user
+            
+                echo "=== Repo Access ==="
+                curl -s -H "  Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                  https://api.github.com/repos/${{ github.repository }} \
+                  | jq '{permissions, visibility, private}'
