@@ -1,0 +1,56 @@
+name: CI + CD
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compile
+        uses: actions/checkout@v4
+
+      - name: package
+        run: echo "package"
+
+  DeployDev:
+    name: Deploy to Dev
+    if: github.event_name == 'pul_request'
+    needs: Build
+    environment:
+      name: Dev
+      url: "https:dev.mapp.com"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo i am deploying
+
+  DeployStage:
+    name: Deploy to Stage
+    if: github.event.ref == 'refs/heads/main'
+    needs: DeployDev
+    runs-on: ubuntu-latest
+    environment:
+      name: Stage
+      url: "https:stage.mapp.com"
+    steps:
+      - name: Deploy 
+        run: echo "i am deploying" 
+          
+        
+  DeployProd:
+    name: Deploy to Prod
+    if: github.event.ref == 'refs/heads/main'
+    needs: DeployStage
+    runs-on: ubuntu-latest
+    environment:
+      name: Prod
+      url: "https:prod.mapp.com"
+    steps:
+      - name: Deploy 
+        run: echo "i am deploying"
